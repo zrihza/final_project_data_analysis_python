@@ -6,13 +6,17 @@ from streamlit_folium import st_folium
 from folium.plugins import HeatMap
 import seaborn as sns
 import matplotlib.pyplot as plt
-
-# Apply seaborn theme
-plt.style.use("seaborn-v0_8-darkgrid")
-sns.set_palette("husl")  # Bright, modern color
+from PIL import Image
 
 # Dashboard Title
 st.title("E-commerce Data Analytics Dashboard")
+image_path = "dashboard/EDA.png"  # Sesuaikan dengan lokasi file
+image = Image.open(image_path)
+new_size = (int(image.width * 0.75), int(image.height * 0.75))
+image = image.resize(new_size)
+
+# PNG at sidebar
+st.sidebar.image(image, caption="E-Commerce Data Analysis", use_column_width=True)
 
 # Sidebar for file upload and date filtering
 st.sidebar.header("Time-based Visualization")
@@ -50,11 +54,33 @@ order_status_counts["Percentage"] = (order_status_counts["Count"] / order_status
 st.write(order_status_counts)
 
 # Payment Type Distribution Chart
-st.write("### Payment Type Distribution Chart")
-payment_type_counts = df_filtered["payment type"].value_counts().reset_index()
-payment_type_counts.columns = ["Payment Type", "Count"]
-fig, ax = plt.subplots()
-sns.barplot(x="Payment Type", y="Count", data=payment_type_counts, ax=ax)
+fig, ax = plt.subplots(figsize=(8, 5))
+colors = sns.color_palette("plasma")
+
+# Pie chart data
+df_payment = df_filtered["payment type"].value_counts()
+
+# Menentukan bagian terbesar
+max_index = df_payment.idxmax()  # Ambil kategori dengan jumlah terbesar
+
+# Buat explode list: kategori terbesar meledak, lainnya tetap
+explode = [0.1 if index == max_index else 0 for index in df_payment.index]
+
+# Membuat Pie Chart
+wedges, texts, autotexts = ax.pie(
+    df_payment, 
+    labels=df_payment.index, 
+    autopct="%1.1f%%", 
+    startangle=140, 
+    colors=colors,
+    textprops={"color": "black"},  # Mengubah warna angka persen menjadi putih
+    explode=explode  # Meledakkan kategori terbesar
+)
+
+# Title
+ax.set_title("Payment Type Distribution", fontsize=14)
+
+# Plot
 st.pyplot(fig)
 
 # Top 10 Most Ordered Product Categories Chart
@@ -174,3 +200,12 @@ plt.grid(axis="y", linestyle="--", alpha=0.7)
 
 # Show the plot in Streamlit
 st.pyplot(fig)
+
+# Footer Copyright
+st.markdown(
+    """
+    ---
+    © 2025 IHZA ZHAFRAN RAMADHAN.
+    """,
+    unsafe_allow_html=True
+)
