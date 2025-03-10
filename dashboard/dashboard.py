@@ -17,15 +17,8 @@ st.title("E-commerce Data Analytics Dashboard")
 # Sidebar for file upload and date filtering
 st.sidebar.header("Time-based Visualization")
 
-# Name
-st.sidebar.markdown("---")  # Add a horizontal line for separation
-st.sidebar.markdown("### Created by:")
-st.sidebar.markdown("**IHZA ZHAFRAN RAMADHAN**")
-st.sidebar.markdown("[LinkedIn](https://www.linkedin.com/in/ihza-zhafran-010a0b21a/)")
-st.sidebar.markdown("📧 ihzazr25@gmail.com")
-
 # Load dataset
-file_path = "C:/Users/ihzar/Downloads/dicoding/data analytics with python/final project/E-Commerce Public Dataset/ecommerce_cleaned_dataset.csv"
+file_path = "C:/Users/ihzar/Downloads/dicoding/final_project_data_analysis_python/dashboard/main_data.csv"
 df = pd.read_csv(file_path)
 print("File has been successfully read")
 
@@ -39,6 +32,13 @@ end_date = st.sidebar.date_input("End Date", df["order purchase timestamp"].max(
 # Convert date input to datetime format
 start_date = pd.to_datetime(start_date)
 end_date = pd.to_datetime(end_date)
+
+# Name
+st.sidebar.markdown("---")  # Add a horizontal line for separation
+st.sidebar.markdown("### Created by:")
+st.sidebar.markdown("**IHZA ZHAFRAN RAMADHAN**")
+st.sidebar.markdown("[LinkedIn](https://www.linkedin.com/in/ihza-zhafran-010a0b21a/)")
+st.sidebar.markdown("📧 ihzazr25@gmail.com")
 
 # Filter dataset based on selected date range
 df_filtered = df[(df["order purchase timestamp"] >= start_date) & (df["order purchase timestamp"] <= end_date)]
