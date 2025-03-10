@@ -18,5 +18,5 @@ pip install -r requirements.txt
 
 ## Run steamlit app
 ```
-
+https://ihza-ecommerce-public-analytics.streamlit.app/
 ```

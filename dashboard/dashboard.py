@@ -20,7 +20,6 @@ st.sidebar.header("Time-based Visualization")
 # Load dataset
 file_path = "C:/Users/ihzar/Downloads/dicoding/final_project_data_analysis_python/dashboard/main_data.csv"
 df = pd.read_csv(file_path)
-print("File has been successfully read")
 
 # Convert timestamps to datetime format
 df["order purchase timestamp"] = pd.to_datetime(df["order purchase timestamp"])
