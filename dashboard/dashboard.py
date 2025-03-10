@@ -18,7 +18,7 @@ st.title("E-commerce Data Analytics Dashboard")
 st.sidebar.header("Time-based Visualization")
 
 # Load dataset
-file_path = "C:/Users/ihzar/Downloads/dicoding/final_project_data_analysis_python/dashboard/main_data.csv"
+file_path = "dashboard/main_data.csv"
 df = pd.read_csv(file_path)
 
 # Convert timestamps to datetime format
