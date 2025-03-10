@@ -42,6 +42,7 @@ st.sidebar.markdown("### Created by:")
 st.sidebar.markdown("**IHZA ZHAFRAN RAMADHAN**")
 st.sidebar.markdown("[LinkedIn](https://www.linkedin.com/in/ihza-zhafran-010a0b21a/)")
 st.sidebar.markdown("📧 ihzazr25@gmail.com")
+st.sidebar.markdown("https://github.com/zrihza/final_project_data_analysis_python")
 
 # Filter dataset based on selected date range
 df_filtered = df[(df["order purchase timestamp"] >= start_date) & (df["order purchase timestamp"] <= end_date)]
@@ -59,14 +60,12 @@ colors = sns.color_palette("plasma")
 
 # Pie chart data
 df_payment = df_filtered["payment type"].value_counts()
-
-# Menentukan bagian terbesar
 max_index = df_payment.idxmax()  # Ambil kategori dengan jumlah terbesar
 
-# Buat explode list: kategori terbesar meledak, lainnya tetap
+# Explode list: top category
 explode = [0.1 if index == max_index else 0 for index in df_payment.index]
 
-# Membuat Pie Chart
+# Pie Chart
 wedges, texts, autotexts = ax.pie(
     df_payment, 
     labels=df_payment.index, 
@@ -76,11 +75,7 @@ wedges, texts, autotexts = ax.pie(
     textprops={"color": "black"},  # Mengubah warna angka persen menjadi putih
     explode=explode  # Meledakkan kategori terbesar
 )
-
-# Title
 ax.set_title("Payment Type Distribution", fontsize=14)
-
-# Plot
 st.pyplot(fig)
 
 # Top 10 Most Ordered Product Categories Chart
