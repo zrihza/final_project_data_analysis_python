@@ -6,18 +6,26 @@ from streamlit_folium import st_folium
 from folium.plugins import HeatMap
 import seaborn as sns
 import matplotlib.pyplot as plt
+from PIL import Image
+
+sns.set(style='dark')
 
 # Dashboard Title
 st.title("E-commerce Data Analytics Dashboard")
+image_path = "dashboard/EDA.png"  # Sesuaikan dengan lokasi file
+image = Image.open(image_path)
+new_size = (int(image.width * 0.75), int(image.height * 0.75))
+image = image.resize(new_size)
 
 # PNG at sidebar
-st.sidebar.image("dashboard/EDA.png", caption="E-Commerce Data Analysis", use_column_width=True)
+st.sidebar.image(image, caption="E-Commerce Data Analysis", use_column_width=True)
 
 # Sidebar for file upload and date filtering
 st.sidebar.header("Time-based Visualization")
 
 # Load dataset
-df = pd.read_csv("dashboard/main_data.csv")
+file_path = "dashboard/main_data.csv"
+df = pd.read_csv(file_path)
 
 # Convert timestamps to datetime format
 df["order purchase timestamp"] = pd.to_datetime(df["order purchase timestamp"])
