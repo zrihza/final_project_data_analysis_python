@@ -6,8 +6,6 @@ from folium.plugins import HeatMap
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-sns.set(style='dark')
-
 # Dashboard Title
 st.title("E-commerce Data Analytics Dashboard")
 
