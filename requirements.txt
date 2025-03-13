@@ -72,10 +72,10 @@ nbformat==5.10.3
 nest-asyncio==1.6.0
 notebook==7.1.2
 notebook_shim==0.2.4
-numpy
+numpy>=1.21.0
 overrides==7.7.0
 packaging==24.0
-pandas
+pandas>=1.5.0
 pandocfilters==1.5.1
 parso==0.8.3
 pillow==11.1.0
