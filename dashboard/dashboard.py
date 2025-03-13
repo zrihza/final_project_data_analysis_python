@@ -9,8 +9,7 @@ import matplotlib.pyplot as plt
 sns.set(style='dark')
 
 # Dashboard Title
-#st.title("E-commerce Data Analytics Dashboard")
-#image = Image.open("EDA.png")
+st.title("E-commerce Data Analytics Dashboard")
 
 # PNG at sidebar
 st.sidebar.image("dashboard/EDA.png", caption="E-Commerce Data Analysis", use_column_width=True)
